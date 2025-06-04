@@ -1,19 +1,17 @@
 services:
-    database:
-        hostname: sql
-        container_name: mssqlIpad
-        build:
-            dockerfile: Dockerfile
-        user: root
-        
-        ports:
-            - "1433:1433"
-        
-        environment:
-            - ACCEPT_EULA=Y
-            - MSSQL_SA_PASSWORD=BratwurstIN23!
-            - MSSQL_PID=Developer
-
-        volumes:
-            - /mssql-data:/var/opt/mssql
-            - ./init.sql:/init.sql
+  database:
+    hostname: sql
+    container_name: mssqlIpad
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=BratwurstIN23!
+      - MSSQL_PID=Developer
+    volumes:
+      - /mssql-data:/var/opt/mssql
+      - ./init.sql:/init.sql
